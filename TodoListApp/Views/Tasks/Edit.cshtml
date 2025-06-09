@@ -1,0 +1,67 @@
+@model TodoListApp.Models.Task
+
+@{
+    ViewData["Title"] = "Modifier la tâche";
+}
+
+<div class="container mt-4">
+    <h1>Modifier la tâche</h1>
+
+    <div class="row">
+        <div class="col-md-8">
+            <form asp-action="Edit" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="Id" />
+                <input type="hidden" asp-for="UserId" />
+                <input type="hidden" asp-for="CreatedAt" />
+
+                <div class="form-group mb-3">
+                    <label asp-for="Title" class="control-label"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Description" class="control-label"></label>
+                    <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="DueDate" class="control-label"></label>
+                    <input asp-for="DueDate" class="form-control" type="date" />
+                    <span asp-validation-for="DueDate" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <div class="form-check">
+                        <input asp-for="IsCompleted" class="form-check-input" />
+                        <label asp-for="IsCompleted" class="form-check-label"></label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Enregistrer
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i> Retour à la liste
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{/* await Html.RenderPartialAsync("_ValidationScriptsPartial"); */} 
+    <script>
+        $(document).ready(function () {
+            // Forcer la re-parse de la validation unobtrusive pour le formulaire de modification
+            // $('form').each(function () {
+            //     $(this).data('validator', null);
+            //     $.validator.unobtrusive.parse($(this));
+            // });
+        });
+    </script>
+} 

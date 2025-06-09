@@ -1,0 +1,45 @@
+@model TodoListApp.Models.Task
+
+@{
+    ViewData["Title"] = "Supprimer la tâche";
+}
+
+<div class="container mt-4">
+    <h1>Supprimer la tâche</h1>
+
+    <div class="alert alert-danger">
+        <h4>Êtes-vous sûr de vouloir supprimer cette tâche ?</h4>
+    </div>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Title</h5>
+            <p class="card-text">@Model.Description</p>
+            <p class="card-text">
+                <small class="text-muted">
+                    <i class="fas fa-calendar"></i> Échéance : @Model.DueDate.ToString("dd/MM/yyyy")
+                </small>
+            </p>
+            <p class="card-text">
+                <small class="text-muted">
+                    <i class="fas fa-clock"></i> Créée le : @Model.CreatedAt.ToString("dd/MM/yyyy HH:mm")
+                </small>
+            </p>
+            <p class="card-text">
+                <small class="text-muted">
+                    <i class="fas fa-check-circle"></i> Statut : @(Model.IsCompleted ? "Terminée" : "En cours")
+                </small>
+            </p>
+        </div>
+    </div>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">
+            <i class="fas fa-trash"></i> Supprimer
+        </button>
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Retour à la liste
+        </a>
+    </form>
+</div> 

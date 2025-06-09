@@ -1,0 +1,39 @@
+@model TodoListApp.Models.Task
+
+@{
+    ViewData["Title"] = "Détails de la tâche";
+}
+
+<div class="container mt-4">
+    <h1>Détails de la tâche</h1>
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Title</h5>
+            <p class="card-text">@Model.Description</p>
+            <p class="card-text">
+                <small class="text-muted">
+                    <i class="fas fa-calendar"></i> Échéance : @Model.DueDate.ToString("dd/MM/yyyy")
+                </small>
+            </p>
+            <p class="card-text">
+                <small class="text-muted">
+                    <i class="fas fa-clock"></i> Créée le : @Model.CreatedAt.ToString("dd/MM/yyyy HH:mm")
+                </small>
+            </p>
+            <p class="card-text">
+                <small class="text-muted">
+                    <i class="fas fa-check-circle"></i> Statut : @(Model.IsCompleted ? "Terminée" : "En cours")
+                </small>
+            </p>
+        </div>
+        <div class="card-footer bg-transparent">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">
+                <i class="fas fa-edit"></i> Modifier
+            </a>
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="fas fa-arrow-left"></i> Retour à la liste
+            </a>
+        </div>
+    </div>
+</div> 
